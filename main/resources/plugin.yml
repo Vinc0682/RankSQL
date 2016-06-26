@@ -2,7 +2,7 @@ name: RankSQL
 prefix: RankSQL
 main: net.newtownia.RankSQL.RankSQL
 version: '1.0-b1'
-depend: [NTApi]
+depend: [NTApi, Vault]
 author: VincBreaker
 
 commands:

@@ -1,4 +1,3 @@
-# Not yet implemented
 Database:
   Host: 'localhost'
   Port: 3306
@@ -7,13 +6,12 @@ Database:
   Database: RankSQL
   Table: 'RankSQL'
 
-# Not yet implemented
 Synchronisation:
 
   Triggers:
     Player-Join: True
     Player-Leave: True
-    Delay: False
+    Delay: False # Not yet implemented
     Delay-Time: 6000 # In ticks
 
   Only-Current-Player: True
@@ -24,13 +22,13 @@ Synchronisation:
     - admin
     - owner
 
-  Download-Whitelist:
+  Download-Whitelist: # Not yet implemented
     - vip
     - mod
     - admin
     - owner
 
-  Upload-Whitelist:
+  Upload-Whitelist: # Not yet implemented
     - vip
     - mod
     - admin

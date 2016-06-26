@@ -1,4 +1,4 @@
-package net.newtownia.RankSQL.Data;
+package main.java.net.newtownia.RankSQL.Data;
 
 import java.util.UUID;
 
@@ -9,7 +9,7 @@ public class RankData
     private String rankName;
     private long until;
 
-    public RankData(int id, UUID playerUUID, String rankName, long until)
+    RankData(int id, UUID playerUUID, String rankName, long until)
     {
         this.id = id;
         this.playerUUID = playerUUID;

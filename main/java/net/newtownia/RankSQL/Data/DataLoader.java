@@ -1,7 +1,8 @@
-package net.newtownia.RankSQL.Data;
+package main.java.net.newtownia.RankSQL.Data;
 
 import com.zaxxer.hikari.HikariDataSource;
-import net.newtownia.RankSQL.RankSQL;
+import main.java.net.newtownia.RankSQL.RankSQL;
+import main.java.net.newtownia.RankSQL.Utils.LogUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -9,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class DataLoader
@@ -44,6 +47,7 @@ public class DataLoader
             Connection conn = dataSource.getConnection();
             Statement statement = conn.createStatement();
             statement.executeQuery("CREATE TABLE IF NOT EXISTS `" + table +"` (`Id` int(11) NOT NULL AUTO_INCREMENT,`PlayerUUID` varchar(36) NOT NULL,`Rank` varchar(24) NOT NULL,`Until` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,PRIMARY KEY (`Id`))");
+            LogUtils.debug("Tried to create table!");
         }
         catch (SQLException e)
         {
@@ -51,21 +55,23 @@ public class DataLoader
         }
     }
 
-    public RankData fetchData(UUID pUUID)
+    private List<RankData> fetchData(UUID pUUID)
     {
+        List<RankData> result = new ArrayList<>();
         try
         {
+            LogUtils.debug("Trying to fetch data of uuid: " + pUUID.toString());
             Connection conn = dataSource.getConnection();
             Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM `" + table +
                     "` WHERE `PlayerUUID` like \"" + pUUID.toString() +"\"");
 
-            if (results.next())
+            while (results.next())
             {
-                return new RankData(results.getInt("Id"),
+                result.add(new RankData(results.getInt("Id"),
                         UUID.fromString(results.getString("PlayerUUID")),
                         results.getString("Rank"),
-                        results.getTimestamp("Until").getTime());
+                        results.getTimestamp("Until").getTime()));
             }
         }
         catch (SQLException e)
@@ -73,11 +79,16 @@ public class DataLoader
             e.printStackTrace();
         }
 
-        return null;
+        return result;
     }
 
-    public RankData fetchData(Player p)
+    public List<RankData> fetchData(Player p)
     {
         return fetchData(p.getUniqueId());
+    }
+
+    public void unload()
+    {
+        dataSource.close();
     }
 }
