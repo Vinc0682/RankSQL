@@ -1,6 +1,7 @@
 package main.java.net.newtownia.RankSQL.Utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 public class LogUtils
 {
@@ -21,6 +22,7 @@ public class LogUtils
 
     private static void console(String message)
     {
+        message = ChatColor.translateAlternateColorCodes('&', message);
         Bukkit.getConsoleSender().sendMessage(message);
     }
 }

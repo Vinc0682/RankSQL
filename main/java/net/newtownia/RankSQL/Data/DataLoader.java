@@ -51,7 +51,7 @@ public class DataLoader
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            LogUtils.warn("Cannot create table, maybe it already exists or the user doesn't have the permission to create it!");
         }
     }
 
@@ -73,6 +73,7 @@ public class DataLoader
                         results.getString("Rank"),
                         results.getTimestamp("Until").getTime()));
             }
+            LogUtils.debug("Got " + result.size() + " ranks!");
         }
         catch (SQLException e)
         {

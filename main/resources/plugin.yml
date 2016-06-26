@@ -1,6 +1,6 @@
 name: RankSQL
 prefix: RankSQL
-main: net.newtownia.RankSQL.RankSQL
+main: main.java.net.newtownia.RankSQL.RankSQL
 version: '1.0-b1'
 depend: [NTApi, Vault]
 author: VincBreaker

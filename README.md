@@ -6,9 +6,9 @@ RankSQL is a plugin made for one special case:
 - Some players need to have the same rank on each server. (E.g. VIP, Moderator, Admin)
 - The permissions of these ranks may variate on the servers.
 
-RankSQL synchronises these special ranks via MySQL and applies them to the local permission system via Vault so you
+RankSQL synchronises these special ranks via MySQL and applies them to the local Pex-config so you
 can define these ranks on a local base but don't have to apply these ranks for each player on each server.
 
 **Requirements:**
-- Vault
+- PermissionsEX
 - NTApi
