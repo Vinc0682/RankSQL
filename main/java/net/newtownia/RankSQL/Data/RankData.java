@@ -1,4 +1,4 @@
-package net.newtownia.RankSQL;
+package net.newtownia.RankSQL.Data;
 
 import java.util.UUID;
 

@@ -2,7 +2,7 @@
 
 RankSQL is a plugin made for one special case:
 
-- You have a set up a network with some servers with completly different permissions. (E.g. Skywars and Prison)
+- You have a set up a network with some servers with completely different permissions. (E.g. SkyWars and Prison)
 - Some players need to have the same rank on each server. (E.g. VIP, Moderator, Admin)
 - The permissions of these ranks may variate on the servers.
 

@@ -1,0 +1,37 @@
+# Not yet implemented
+Database:
+  Host: 'localhost'
+  Port: 3306
+  Username: 'NeverUseRoot'
+  Password: 'abcd1234'
+  Database: RankSQL
+  Table: 'RankSQL'
+
+# Not yet implemented
+Synchronisation:
+
+  Triggers:
+    Player-Join: True
+    Player-Leave: True
+    Delay: False
+    Delay-Time: 6000 # In ticks
+
+  Only-Current-Player: True
+
+  Remove-Ranks-If-Not-In-DB:
+    - vip
+    - mod
+    - admin
+    - owner
+
+  Download-Whitelist:
+    - vip
+    - mod
+    - admin
+    - owner
+
+  Upload-Whitelist:
+    - vip
+    - mod
+    - admin
+    - owner
