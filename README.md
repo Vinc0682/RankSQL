@@ -9,6 +9,6 @@ RankSQL is a plugin made for one special case:
 RankSQL synchronises these special ranks via MySQL and applies them to the local permission system via Vault so you
 can define these ranks on a local base but don't have to apply these ranks for each player on each server.
 
-Requirements:
+**Requirements:**
 - Vault
 - NTApi
