@@ -1,0 +1,17 @@
+name: RankSQL
+prefix: RankSQL
+main: net.newtownia.RankSQL.RankSQL
+version: '1.0-b1'
+depend: [NTApi]
+author: VincBreaker
+
+commands:
+  ranksql:
+    description: 'Reload or force-synchronise RankSQL.'
+    usage: '/ranksql <reload|synchronise>'
+
+permissions:
+  ranksql.reload:
+    default: OP
+  ranksql.synchronise:
+    default: OP
