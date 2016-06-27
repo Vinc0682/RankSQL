@@ -9,9 +9,9 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import java.util.List;
 
-class RankUpdater
+public class RankUpdater
 {
-    static void synchroniseFromDatabase(RankSQL pl, Player p)
+    public static void synchroniseFromDatabase(RankSQL pl, Player p)
     {
         LogUtils.debug("Handling download for " + p.getName());
         PermissionUser permissionUser = PermissionsEx.getUser(p);

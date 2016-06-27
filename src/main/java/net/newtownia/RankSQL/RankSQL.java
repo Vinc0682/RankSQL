@@ -1,5 +1,6 @@
 package main.java.net.newtownia.RankSQL;
 
+import main.java.net.newtownia.RankSQL.Commands.RankSQLCommand;
 import main.java.net.newtownia.RankSQL.Data.DataLoader;
 import main.java.net.newtownia.RankSQL.Executive.Listeners;
 import net.newtownia.NTApi.Config.ConfigManager;
@@ -21,10 +22,11 @@ public class RankSQL extends JavaPlugin
     {
         instance = this;
 
+        getCommand("ranksql").setExecutor(new RankSQLCommand(this));
         reload();
     }
 
-    private void reload()
+    public void reload()
     {
         if (listeners != null)
             HandlerList.unregisterAll(this);

@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 public class LogUtils
 {
-    private static boolean debug = true;
+    private static boolean debug = false;
     private static boolean warn = true;
 
     public static void debug(String message)
