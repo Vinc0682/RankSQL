@@ -11,32 +11,35 @@ import java.util.List;
 
 public class RankUpdater
 {
-    public static void synchroniseFromDatabase(RankSQL pl, Player p)
+    public static void synchroniseFromDatabase(final RankSQL pl, final Player p)
     {
-        LogUtils.debug("Handling download for " + p.getName());
-        PermissionUser permissionUser = PermissionsEx.getUser(p);
-
-        List<RankData> sqlRanks = pl.getLoader().fetchData(p);
-        List<String> toRemove = pl.getConfiguration().getStringList("Synchronisation.Remove-Ranks-If-Not-In-DB");
-        for (RankData sqlRank : sqlRanks)
+        new Thread("Rank Sync " + p.getName())
         {
-            String rank = sqlRank.getRankName();
-            permissionUser.addGroup(sqlRank.getRankName());
+            @Override
+            public void run()
+            {
+                LogUtils.debug("Handling download for " + p.getName());
+                PermissionUser permissionUser = PermissionsEx.getUser(p);
 
-            if (toRemove.contains(rank))
-                toRemove.remove(rank);
+                List<RankData> sqlRanks = pl.getLoader().fetchData(p);
+                List<String> toRemove = pl.getConfiguration().getStringList("Synchronisation.Remove-Ranks-If-Not-In-DB");
+                for (RankData sqlRank : sqlRanks)
+                {
+                    String rank = sqlRank.getRankName();
+                    permissionUser.addGroup(sqlRank.getRankName());
 
-            LogUtils.debug("Added rank " + rank + " to " + p.getName());
-        }
-        for (String group : toRemove)
-        {
-            permissionUser.removeGroup(group);
-            LogUtils.debug("Removed rank " + group + " from " + p.getName());
-        }
-    }
+                    if (toRemove.contains(rank))
+                        toRemove.remove(rank);
 
-    static void synchroniseToDatabase(RankSQL pl, Player p)
-    {
-        // TODO: Implement
+                    LogUtils.debug("Added rank " + rank + " to " + p.getName());
+                }
+                for (String group : toRemove)
+                {
+                    permissionUser.removeGroup(group);
+                    LogUtils.debug("Removed rank " + group + " from " + p.getName());
+                }
+            }
+        }.run();
+
     }
 }
