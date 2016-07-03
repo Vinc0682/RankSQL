@@ -46,7 +46,7 @@ public class DataLoader
         try {
             Connection conn = dataSource.getConnection();
             Statement statement = conn.createStatement();
-            statement.executeQuery("CREATE TABLE IF NOT EXISTS `" + table +"` (`Id` int(11) NOT NULL AUTO_INCREMENT,`PlayerUUID` varchar(36) NOT NULL,`Rank` varchar(24) NOT NULL,`Until` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,PRIMARY KEY (`Id`))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `" + table +"` (`Id` int(11) NOT NULL AUTO_INCREMENT,`PlayerUUID` varchar(36) NOT NULL,`Rank` varchar(24) NOT NULL,`Until` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,PRIMARY KEY (`Id`))");
             LogUtils.debug("Tried to create table!");
         }
         catch (SQLException e)
@@ -73,6 +73,7 @@ public class DataLoader
                         results.getString("Rank"),
                         results.getTimestamp("Until").getTime()));
             }
+            results.close();
             LogUtils.debug("Got " + result.size() + " ranks!");
         }
         catch (SQLException e)

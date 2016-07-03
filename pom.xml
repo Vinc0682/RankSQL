@@ -6,13 +6,19 @@
 
     <groupId>net.newtownia</groupId>
     <artifactId>RankSQL</artifactId>
-    <version>1.0-b2</version>
+    <version>1.0-b3</version>
 
     <dependencies>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>2.4.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
