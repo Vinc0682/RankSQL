@@ -1,13 +1,13 @@
-name: RankSQL
-prefix: RankSQL
-main: main.java.net.newtownia.RankSQL.RankSQL
+name: ranksql
+prefix: ranksql
+main: main.java.net.newtownia.ranksql.ranksql
 version: '1.0-b3'
 depend: [NTApi, PermissionsEx]
 author: VincBreaker
 
 commands:
   ranksql:
-    description: 'Reload or force-synchronise RankSQL.'
+    description: 'Reload or force-synchronise ranksql.'
     usage: '/ranksql <reload|synchronise>'
 
 permissions:

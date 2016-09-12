@@ -1,6 +1,6 @@
-package main.java.net.newtownia.RankSQL.Commands;
+package main.java.net.newtownia.ranksql.commands;
 
-import main.java.net.newtownia.RankSQL.RankSQL;
+import main.java.net.newtownia.ranksql.RankSQL;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
