@@ -1,15 +1,15 @@
-package main.java.net.newtownia.RankSQL.Commands;
+package main.java.net.newtownia.ranksql.commands;
 
-import main.java.net.newtownia.RankSQL.RankSQL;
+import main.java.net.newtownia.ranksql.RankSQL;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 /**
  * Created by Vinc0682 on 26.06.2016.
  */
-public abstract class SubCommand
-{
-    private String name;
+public abstract class SubCommand {
+
+    private final String name;
 
     public SubCommand(String name)
     {
@@ -21,4 +21,5 @@ public abstract class SubCommand
     }
 
     public abstract void execute(RankSQL pl, CommandSender cs, Command cmd, String label, String[] args);
+
 }
