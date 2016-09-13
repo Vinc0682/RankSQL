@@ -1,9 +1,10 @@
-name: ranksql
-prefix: ranksql
+name: RankSql
+version: Kat1.1
 main: main.java.net.newtownia.ranksql.ranksql
-version: '1.0-b3'
-depend: [NTApi, PermissionsEx]
 author: VincBreaker
+authors: [MrKitty_Cat]
+
+depend: [PermissionsEx]
 
 commands:
   ranksql:

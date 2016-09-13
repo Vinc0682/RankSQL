@@ -14,7 +14,5 @@ public class Help extends SubCommand {
     }
 
     @Override
-    public void execute(RankSQL pl, CommandSender cs, Command cmd, String label, String[] args) {
-        cs.sendMessage("§7[§cRankSQL§7] Use /ranksql <reload|sync>");
-    }
+    public void execute(RankSQL pl, CommandSender cs, Command cmd, String label, String[] args) {cs.sendMessage("§7[§cRankSQL§7] Use /ranksql <reload|sync>");}
 }

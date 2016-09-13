@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 /**
  * Created by Vinc0682 on 26.06.2016.
  */
-public class Reload extends SubCommand
-{
+public class Reload extends SubCommand {
+
     public Reload() {
         super("reload");
     }

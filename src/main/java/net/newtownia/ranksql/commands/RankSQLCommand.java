@@ -10,16 +10,13 @@ import java.util.HashMap;
 /**
  * Created by Vinc0682 on 26.06.2016.
  */
-public class RankSQLCommand implements CommandExecutor
-{
+public class RankSQLCommand implements CommandExecutor {
+
     private RankSQL pl;
-    private HashMap<String, SubCommand> commands;
+    private final HashMap<String, SubCommand> commands = new HashMap<>();
 
-    public RankSQLCommand(RankSQL pl)
-    {
+    public RankSQLCommand(RankSQL pl) {
         this.pl = pl;
-
-        commands = new HashMap<>();
         add(new Help());
         add(new Reload());
         add(new Sync());
@@ -27,13 +24,9 @@ public class RankSQLCommand implements CommandExecutor
 
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
-        String commandName = "help";
-        if (args.length > 0) commandName = args[0];
-        commandName = commandName.toLowerCase();
-        SubCommand command = null;
-        if (commands.containsKey(commandName)) command = commands.get(commandName);
-        if (command == null) command = commands.get("help");
-        command.execute(pl, cs, cmd, label, args);
+        SubCommand command = commands.get((args.length > 0  ? args[0] : "help").toLowerCase());
+        if (command == null) cs.sendMessage("§7[§cRankSQL§7] Use /ranksql <reload|sync>");
+        else command.execute(pl, cs, cmd, label, args);
         return true;
     }
 
