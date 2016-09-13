@@ -13,7 +13,8 @@ import java.util.UUID;
 
 public class MySql {
 
-    private String table;
+    private final String table;
+
     private final HikariDataSource hikariDataSource = new HikariDataSource();
 
     public MySql(String ip, String port, String database, String username, String password, String table) {

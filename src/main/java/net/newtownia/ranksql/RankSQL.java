@@ -37,8 +37,7 @@ public class RankSQL extends JavaPlugin {
         return dataLoader;
     }
 
-    public static RankSQL instance()
-    {
+    public static RankSQL instance() {
         return instance;
     }
 
