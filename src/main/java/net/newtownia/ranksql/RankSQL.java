@@ -29,8 +29,8 @@ public class RankSQL extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
+        EXECUTOR.shutdown();
         dataLoader.disable();
-        EXECUTOR.shutdownNow();
     }
 
     public MySql dataLoader() {
