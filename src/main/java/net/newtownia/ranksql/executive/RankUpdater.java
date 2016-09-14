@@ -17,17 +17,19 @@ public class RankUpdater {
             PermissionUser permissionUser = PermissionsEx.getUser(p);
 
             List<String> toRemove = pl.getConfig().getStringList("Synchronisation.Remove-Ranks-If-Not-In-DB");
-            for (RankData sqlRank : pl.dataLoader().fetchData(p)) {
-                String rank = sqlRank.rankName();
-                permissionUser.addGroup(rank);
-                toRemove.remove(rank);
-                LogUtils.debug("Added rank " + rank + " to " + p.getName());
-            }
+            pl.dataLoader().fetchData(p.getUniqueId(), rankDataSet -> {
+                for (RankData sqlRank : rankDataSet) {
+                    String rank = sqlRank.rankName();
+                    permissionUser.addGroup(rank);
+                    toRemove.remove(rank);
+                    LogUtils.debug("Added rank " + rank + " to " + p.getName());
+                }
 
-            for (String group : toRemove) {
-                permissionUser.removeGroup(group);
-                LogUtils.debug("Removed rank " + group + " from " + p.getName());
-            }
+                for (String group : toRemove) {
+                    permissionUser.removeGroup(group);
+                    LogUtils.debug("Removed rank " + group + " from " + p.getName());
+                }
+            });
         });
     }
 }

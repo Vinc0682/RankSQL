@@ -1,6 +1,6 @@
 name: RankSql
 version: Kat1.1
-main: main.java.net.newtownia.ranksql.ranksql
+main: main.java.net.newtownia.ranksql.RankSQL
 author: VincBreaker
 authors: [MrKitty_Cat]
 
