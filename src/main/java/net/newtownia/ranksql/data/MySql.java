@@ -4,11 +4,11 @@ import com.zaxxer.hikari.HikariDataSource;
 import main.java.net.newtownia.ranksql.RankSQL;
 import main.java.net.newtownia.ranksql.utils.Call;
 import main.java.net.newtownia.ranksql.utils.LogUtils;
-import org.bukkit.entity.Player;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedHashSet;
 import java.util.UUID;
 
 public class MySql {
@@ -29,11 +29,6 @@ public class MySql {
         hikariDataSource.close();
     }
 
-    public List<RankData> fetchData(Player p)
-    {
-        return fetchData(p.getUniqueId());
-    }
-
     public void sendUpdate(String query) {
         RankSQL.runAsync(() -> {
             try (Connection connection = hikariDataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(query)) { statement.execute(); }
@@ -48,10 +43,10 @@ public class MySql {
         });
     }
 
-    private List<RankData> fetchData(UUID uuid) {
-        List<RankData> result = new ArrayList<>();
+    public void fetchData(UUID uuid, Call<LinkedHashSet<RankData>> call) {
             sendQuery("SELECT * FROM `" + table + "` WHERE `PlayerUUID` like \"" + uuid.toString() + "\"", resultSet -> {
                 try {
+                    LinkedHashSet<RankData> result = new LinkedHashSet<>();
                     LogUtils.debug("Trying to fetch data of uuid: " + uuid.toString());
                     while (resultSet.next()) {
                         result.add(new RankData(resultSet.getInt("Id"),
@@ -61,11 +56,9 @@ public class MySql {
                     }
 
                     LogUtils.debug("Got " + result.size() + " ranks!");
+                    call.call(result);
 
-                } catch (SQLException e) {e.printStackTrace();}
+                } catch (Exception e) {e.printStackTrace();}
             });
-
-
-        return result;
     }
 }
